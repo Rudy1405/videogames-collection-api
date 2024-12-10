@@ -49,11 +49,25 @@ class Handler extends ExceptionHandler
 
             // Manejar otros errores
             return response()->json([
-                'message' => $exception->getMessage(),
-            ], 500);
+                'message' => $exception instanceof \Illuminate\Http\Exceptions\HttpResponseException
+                    ? $exception->getMessage()
+                    : 'Ha ocurrido un error en el servidor.',
+            ], $exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException
+                ? $exception->getStatusCode()
+                : 500);
         }
 
         // Renderizado por defecto (HTML) para otras solicitudes
         return parent::render($request, $exception);
     }
 }
+/*
+ Si se necesitraa habilitar almacenamiento en cache correr> 
+ php artisan route:cache
+php artisan config:cache
+php artisan view:cache
+
+para correr en prod
+php artisan serve 
+
+*/
