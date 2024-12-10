@@ -27,4 +27,33 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        // Verificar si es una solicitud API
+        if ($request->expectsJson()) {
+            // Manejar errores de validación
+            if ($exception instanceof \Illuminate\Validation\ValidationException) {
+                return response()->json([
+                    'message' => 'Validación fallida',
+                    'errors' => $exception->errors(),
+                ], 422);
+            }
+
+            // Manejar errores HTTP genéricos
+            if ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException) {
+                return response()->json([
+                    'message' => $exception->getMessage(),
+                ], $exception->getStatusCode());
+            }
+
+            // Manejar otros errores
+            return response()->json([
+                'message' => $exception->getMessage(),
+            ], 500);
+        }
+
+        // Renderizado por defecto (HTML) para otras solicitudes
+        return parent::render($request, $exception);
+    }
 }
