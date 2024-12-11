@@ -66,6 +66,13 @@ class CategoryController extends Controller
            return response()->json(['message' => 'Categoría no encontrada'], 404);
        }
 
+    // Verificar dependencias
+    if ($category->games()->exists()) {
+        return response()->json([
+            'message' => 'No se puede eliminar la categoría porque está referenciada en juegos.'
+        ], 400);
+    }
+
        $category->delete();
 
        return response()->json(['message' => 'Categoría eliminada']);

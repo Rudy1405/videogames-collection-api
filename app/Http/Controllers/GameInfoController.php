@@ -65,6 +65,13 @@ class GameInfoController extends Controller
           if (!$info) {
               return response()->json(['message' => 'Información no encontrada'], 404);
           }
+
+         // Verificar dependencias
+          if ($gameInfo->userRatings()->exists()) {
+                return response()->json([
+                    'message' => 'No se puede eliminar la información del juego porque está referenciada.'
+                ], 400);
+          }                                               
   
           $info->delete();
   
