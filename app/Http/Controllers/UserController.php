@@ -52,7 +52,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'description' => 'nullable|string',
             'profile_image' => 'nullable|string',
-            'personal_collection' => 'nullable|json',
+            'personal_collection' => 'nullable|array',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
