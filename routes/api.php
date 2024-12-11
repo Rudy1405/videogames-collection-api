@@ -31,10 +31,10 @@ DELETE /api/categories/{id}: Elimina una categoría por ID
 Route::apiResource('xbox-games', XboxGameController::class);
 /*
 GET /api/xbox-games: Devuelve todas las categorías.
-POST /api/xbox-games: Crea una nueva categoría (requiere name y description en el cuerpo de la solicitud).
-GET /api/xbox-games/{id}: Devuelve una categoría específica por ID.
-PUT /api/xbox-games/{id}: Actualiza una categoría existente.
-DELETE /api/xbox-games/{id}: Elimina una categoría por ID
+POST /api/xbox-games: Crea una nueva videojuego (requiere name y description en el cuerpo de la solicitud).
+GET /api/xbox-games/{id}: Devuelve una videojuego específica por ID.
+PUT /api/xbox-games/{id}: Actualiza una videojuego existente.
+DELETE /api/xbox-games/{id}: Elimina una videojuego por ID
 */
 Route::apiResource('ps5-games', PS5GameController::class);
 /*

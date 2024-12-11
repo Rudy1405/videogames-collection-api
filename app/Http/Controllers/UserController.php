@@ -89,7 +89,7 @@ class UserController extends Controller
             'password' => 'sometimes|string|min:8',
             'description' => 'nullable|string',
             'profile_image' => 'nullable|string',
-            'personal_collection' => 'nullable|json',
+            'personal_collection' => 'nullable|array',
         ]);
 
         if (isset($validatedData['password'])) {

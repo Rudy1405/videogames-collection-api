@@ -15,6 +15,7 @@ class ImageUploadController extends Controller
         ]);
 
         // Almacenar la imagen
+        // Todo hacer que el string que regresa tenga la url del almacenamiento + path
         if ($request->file('image')) {
             $path = $request->file('image')->store('profile_images', 'public');
             return response()->json(['message' => 'Imagen subida exitosamente', 'path' => $path], 201);

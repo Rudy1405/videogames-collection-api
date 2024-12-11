@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('description')->nullable();
             $table->string('profile_image')->nullable();
-            $table->json('personal_collection')->nullable(); // Referencias a videojuegos
+            $table->json('personal_collection')->nullable()->change(); // Referencias a videojuegos
             $table->rememberToken();
             $table->timestamps();
         });

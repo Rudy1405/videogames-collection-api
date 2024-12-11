@@ -49,7 +49,7 @@ class GameInfoController extends Controller
   
           $validatedData = $request->validate([
               'general_rating' => 'sometimes|numeric|min:0|max:5',
-              'user_comments' => 'nullable|json',
+              'user_comments' => 'nullable|array',
           ]);
   
           $info->update($validatedData);
